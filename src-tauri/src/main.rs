@@ -2,5 +2,12 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 fn main() {
-    crypto_desktop_lib::run()
+    tauri::Builder::default()
+        .plugin(tauri_plugin_opener::init())
+        .invoke_handler(tauri::generate_handler![
+            crypto_desktop_lib::greet,
+            crypto_desktop_lib::ping
+        ])
+        .run(tauri::generate_context!())
+        .expect("error while running tauri application");
 }
