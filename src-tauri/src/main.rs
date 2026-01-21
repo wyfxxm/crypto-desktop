@@ -11,10 +11,7 @@ fn main() {
             crypto_desktop_lib::commands::aes_decrypt,
             crypto_desktop_lib::commands::rsa_generate_keypair,
             crypto_desktop_lib::commands::rsa_encrypt,
-            crypto_desktop_lib::commands::rsa_decrypt,
-            crypto_desktop_lib::commands::ed25519_generate_keypair,
-            crypto_desktop_lib::commands::ed25519_sign,
-            crypto_desktop_lib::commands::ed25519_verify
+            crypto_desktop_lib::commands::rsa_decrypt
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
