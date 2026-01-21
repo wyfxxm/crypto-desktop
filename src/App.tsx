@@ -1,49 +1,48 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import { invoke } from "@tauri-apps/api/core";
+import { AsymmetricCryptoPanel } from "./components/AsymmetricCryptoPanel";
+import { SymmetricCryptoPanel } from "./components/SymmetricCryptoPanel";
+import { TabButton } from "./components/TabButton";
 import "./App.css";
 
-function App() {
-  const [greetMsg, setGreetMsg] = useState("");
-  const [name, setName] = useState("");
+type TabId = "symmetric" | "asymmetric";
 
-  async function greet() {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    setGreetMsg(await invoke("greet", { name }));
-  }
+const tabs: { id: TabId; label: string }[] = [
+  { id: "symmetric", label: "Symmetric Crypto" },
+  { id: "asymmetric", label: "Asymmetric Crypto" },
+];
+
+function App() {
+  const [activeTab, setActiveTab] = useState<TabId>("symmetric");
 
   return (
-    <main className="container">
-      <h1>Welcome to Tauri + React</h1>
+    <main className="app">
+      <header className="app-header">
+        <div>
+          <p className="eyebrow">Crypto Desktop</p>
+          <h1>Cryptography Toolkit</h1>
+          <p className="subtitle">
+            Explore symmetric encryption and asymmetric workflows powered by Tauri
+            commands.
+          </p>
+        </div>
+      </header>
 
-      <div className="row">
-        <a href="https://vite.dev" target="_blank">
-          <img src="/vite.svg" className="logo vite" alt="Vite logo" />
-        </a>
-        <a href="https://tauri.app" target="_blank">
-          <img src="/tauri.svg" className="logo tauri" alt="Tauri logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="tabs" role="tablist" aria-label="Crypto options">
+        {tabs.map((tab) => (
+          <TabButton
+            key={tab.id}
+            id={tab.id}
+            isActive={activeTab === tab.id}
+            onClick={(id) => setActiveTab(id as TabId)}
+          >
+            {tab.label}
+          </TabButton>
+        ))}
       </div>
-      <p>Click on the Tauri, Vite, and React logos to learn more.</p>
 
-      <form
-        className="row"
-        onSubmit={(e) => {
-          e.preventDefault();
-          greet();
-        }}
-      >
-        <input
-          id="greet-input"
-          onChange={(e) => setName(e.currentTarget.value)}
-          placeholder="Enter a name..."
-        />
-        <button type="submit">Greet</button>
-      </form>
-      <p>{greetMsg}</p>
+      <div className="panel-container">
+        {activeTab === "symmetric" ? <SymmetricCryptoPanel /> : <AsymmetricCryptoPanel />}
+      </div>
     </main>
   );
 }
