@@ -6,7 +6,9 @@ fn main() {
         .plugin(tauri_plugin_opener::init())
         .invoke_handler(tauri::generate_handler![
             crypto_desktop_lib::greet,
-            crypto_desktop_lib::ping
+            crypto_desktop_lib::ping,
+            crypto_desktop_lib::aes_encrypt,
+            crypto_desktop_lib::aes_decrypt
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
