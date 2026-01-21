@@ -1,116 +1,212 @@
-.logo.vite:hover {
-  filter: drop-shadow(0 0 2em #747bff);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafb);
-}
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 1.5;
   font-weight: 400;
-
-  color: #0f0f0f;
-  background-color: #f6f6f6;
-
+  color: #0f172a;
+  background-color: #f8fafc;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
 }
 
-.container {
+* {
+  box-sizing: border-box;
+}
+
+body {
   margin: 0;
-  padding-top: 10vh;
+}
+
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 24px 72px;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #475569;
+}
+
+.subtitle {
+  margin: 12px 0 0;
+  color: #475569;
+  max-width: 560px;
+}
+
+.tabs {
+  display: flex;
+  gap: 12px;
+  padding: 6px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  width: fit-content;
+  margin-bottom: 24px;
+}
+
+.tab-button {
+  border: none;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: transparent;
+  color: #334155;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.tab-button--active {
+  background: #ffffff;
+  color: #0f172a;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+}
+
+.panel-container {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+}
+
+.panel h2 {
+  margin-top: 0;
+}
+
+.panel-description {
+  margin-top: 4px;
+  color: #475569;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.field {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  text-align: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #334155;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: 0.75s;
-}
-
-.logo.tauri:hover {
-  filter: drop-shadow(0 0 2em #24c8db);
-}
-
-.row {
-  display: flex;
-  justify-content: center;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-h1 {
-  text-align: center;
+.field--full {
+  grid-column: 1 / -1;
 }
 
 input,
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
+textarea {
+  border-radius: 10px;
+  border: 1px solid #cbd5f5;
+  padding: 10px 12px;
+  font-size: 0.95rem;
   font-family: inherit;
-  color: #0f0f0f;
-  background-color: #ffffff;
-  transition: border-color 0.25s;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  background: #f8fafc;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.button-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.button-row--align-start {
+  align-items: center;
 }
 
 button {
+  border-radius: 999px;
+  border: none;
+  padding: 10px 18px;
+  background: #0f172a;
+  color: #f8fafc;
+  font-size: 0.95rem;
   cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 button:hover {
-  border-color: #396cd8;
-}
-button:active {
-  border-color: #396cd8;
-  background-color: #e8e8e8;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.16);
 }
 
-input,
-button {
-  outline: none;
+.result-block {
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 16px;
+  margin-top: 16px;
 }
 
-#greet-input {
-  margin-right: 5px;
+.result-block pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0;
+  color: #0f172a;
+  font-family: "Fira Code", "Courier New", monospace;
+  font-size: 0.9rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    color: #f6f6f6;
-    background-color: #2f2f2f;
+.status {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+
+.status--success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status--error {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.card {
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 24px;
+  margin-top: 24px;
+  background: #ffffff;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (max-width: 720px) {
+  .app {
+    padding: 32px 16px 48px;
   }
 
-  a:hover {
-    color: #24c8db;
+  .panel-container {
+    padding: 24px;
   }
 
-  input,
-  button {
-    color: #ffffff;
-    background-color: #0f0f0f98;
-  }
-  button:active {
-    background-color: #0f0f0f69;
+  .tabs {
+    width: 100%;
+    justify-content: space-between;
   }
 }
