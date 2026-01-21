@@ -24,7 +24,6 @@ serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 aes-gcm = "0.10"
 base64 = "0.22"
-ed25519-dalek = "2"
 rand = "0.8"
 rsa = { version = "0.9", features = ["sha2"] }
 sha2 = "0.10"
